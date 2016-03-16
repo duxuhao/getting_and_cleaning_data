@@ -19,7 +19,7 @@ colnames(X) <- features[,2]
 
 #Extracts only the measurements on the mean and standard deviation for each measurement
 
-XMeanStd <- X[grepl("mean|std",names(X))]
+XMeanStd <- X[grepl("mean()|std()",names(X))]
 
 #Uses descriptive activity names to name the activities in the data set
 for (n in 1:5) {
