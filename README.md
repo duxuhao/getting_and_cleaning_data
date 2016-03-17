@@ -65,5 +65,12 @@ XMeanStd <- X[grepl("mean\\(\\)|std\\(\\)",names(X))]
 ```Rscript
 New <- cbind(subject, y, XMeanStd)
 
-AverageData <- aggregate(New[, 3:ncol(New)],by=list(subject = New$subject, label = New$label),mean)
+AverageData <- aggregate(New[, 3:ncol(New)],by=list(subjects = New$subjects, labels = New$labels),mean)
+for (n in c("1","2","3","4","5","6")) {
+	AverageData[AverageData$label == n,2] = as.character(activity_labels[n,2])
+}
+```
+* write the data for course upload
+```Rscript
+write.table(format(AverageData, scientific=T), "tidyDataSet2.txt", row.names=F)
 ```
