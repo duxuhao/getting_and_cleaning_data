@@ -22,7 +22,8 @@ You should create one R script called run_analysis.R that does the following.
 ##The description of the run_analysis.R
 
 * read the data contain the training set and testing set, with the X data, y data and subject data in different *.txt file.
-'''Rscript
+
+```Rscript
 X_train <- read.table("train//X_train.txt")
 y_train <- read.table("train//y_train.txt")
 subject_train <- read.table("train//subject_train.txt")
@@ -31,33 +32,37 @@ y_test <- read.table("test//y_test.txt")
 subject_test <- read.table("test//subject_test.txt")
 features <- read.table("features.txt")
 activity_labels <- read.table("activity_labels.txt")
-'''
+```
 
 * combine the train data and test data of the X data, y data and subject data respectivly
-'''Rscript
+
+```Rscript
 X <- rbind(X_train, X_test)
 y <- rbind(y_train, y_test)
 subject <- rbind(subject_train, subject_test)
 Dataset <- cbind(subject, X, y)
-'''
+```
 
 * name the data and change the activity from number to the labels
-'''Rscript
+
+```Rscript
 colnames(X) <- features[,2]
 colnames(y) <- "labels"
 colnames(subject) <- "subjects"
 for (n in 1:5) {
 	y[y == n] = as.character(activity_labels[n,2])
 }
-'''
+```
 
 * Extracts only the measurements on the mean and standard deviation for each measurement
-'''Rscript
+
+```Rscript
 XMeanStd <- X[grepl("mean\\(\\)|std\\(\\)",names(X))]
-'''
+```
 
-*Combine the subject, y and new data with only mean and std, get the mean value of different subject and activity
-
+* Combine the subject, y and new data with only mean and std, get the mean value of different subject and activity
+```Rscript
 New <- cbind(subject, y, XMeanStd)
 
 AverageData <- aggregate(New[, 3:ncol(New)],by=list(subject = New$subject, label = New$label),mean)
+```

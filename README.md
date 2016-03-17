@@ -3,6 +3,7 @@ Assignment submission for getting and cleaning data course
 
 This repo is to create a tidy data that can be used for latter analysis. THe original data is available on the website
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
 THe data, which is contain the activity information of our human body, is collected by the Samsung smartphone.
 
 ##The file in this repo
